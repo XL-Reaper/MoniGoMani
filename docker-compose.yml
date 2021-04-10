@@ -3,15 +3,15 @@ version: '3'
 services:
   freqtrade:
     # image: freqtradeorg/freqtrade:stable
-    # image: freqtradeorg/freqtrade:develop
+    image: freqtradeorg/freqtrade:develop
     # Use plotting image
-    image: freqtradeorg/freqtrade:develop_plot
+    # image: freqtradeorg/freqtrade:develop_plot
     # Build step - only needed when additional dependencies are needed
     build:
       context: .
       dockerfile: "./docker/Dockerfile.technical"
     restart: unless-stopped
-    container_name: freqtrade
+    container_name: Freqtrade-MoniGoMani
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
       - "./user_data:/freqtrade/user_data"
@@ -24,6 +24,7 @@ services:
     command: >
       trade
       --logfile /freqtrade/user_data/logs/freqtrade.log
-      --db-url sqlite:////freqtrade/user_data/tradesv3-MoniGoMani_v0.5.0_HyperOpted.sqlite
+      --db-url sqlite:////freqtrade/user_data/tradesv3-MoniGoMani_v0.8.1_HyperStrategy.sqlite
       --config /freqtrade/user_data/config.json
-      --strategy MoniGoManiHyperOpted
+      --config /freqtrade/user_data/config-private.json
+      --strategy MoniGoManiHyperStrategy
